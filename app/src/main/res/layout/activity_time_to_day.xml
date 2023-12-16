@@ -12,65 +12,39 @@
         android:layout_height="200dp"
         android:background="@drawable/gb_view"/>
 
-    <TextView
-        android:id="@+id/textTopHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Automate Scene Management"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="29dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
-        android:layout_margin="8dp"
-        />
-
-    <TextView
-        android:id="@+id/textdDshboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dashbaord"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="27dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:layout_below="@id/textTopHeader"
-        />
-
     <RelativeLayout
         android:id="@+id/RelativeLayout01"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="210dp"
+            android:background="@color/white"
             android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="30dip"
-            android:background="#FFFFFF"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true">
+            android:padding="20dip">
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="5dip">
+
                 <TextView
-                    android:id="@+id/txv_sensorTxt"
-                    android:layout_width="117dp"
+                    android:id="@+id/lbl_current_date"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="RGB:"
+                    android:text="Current Time:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
+
                 <TextView
-                    android:id="@+id/txv_rgbValue"
+                    android:id="@+id/txt_current_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -78,26 +52,29 @@
                     android:text="Nothing yet!"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="5dip">
+
                 <TextView
-                    android:id="@+id/txv_lightTxt"
+                    android:id="@+id/lbl_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Lux value:"
+                    android:text="Mode:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
+
                 <TextView
-                    android:id="@+id/txv_lightValue"
+                    android:id="@+id/txt_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -105,26 +82,29 @@
                     android:text="Nothing yet!"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="5dip">
+
                 <TextView
-                    android:id="@+id/txv_proximityTxt"
+                    android:id="@+id/lbl_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Proximity:"
+                    android:text="Status:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
+
                 <TextView
-                    android:id="@+id/txv_proximityValue"
+                    android:id="@+id/txt_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -132,20 +112,64 @@
                     android:text="Nothing yet!"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
-                    android:typeface="monospace"/>
+                    android:typeface="monospace" />
+
             </LinearLayout>
+
             <Button
-                android:id="@+id/btnColor" style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                android:id="@+id/btn_time_of_day"
+                style="@android:style/Widget.DeviceDefault.Button.Borderless"
                 android:layout_width="fill_parent"
                 android:layout_height="70dip"
                 android:layout_margin="10dp"
+                android:layout_marginTop="50dp"
                 android:background="@color/my_primary"
                 android:padding="10dip"
-                android:text=" Refresh! "
+                android:text=" Refresh "
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25sp"/>
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/btn_Home"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="fill_parent"
+                android:layout_height="70dip"
+                android:layout_margin="10dp"
+                android:background="@color/black"
+                android:padding="10dip"
+                android:text="Home"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTopHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Automate Scene Management"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="29dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:layout_margin="8dp"
+            />
+
+        <TextView
+            android:id="@+id/textdDshboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time of Day Monitoring"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="27dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_below="@id/textTopHeader" />
     </RelativeLayout>
 
 </RelativeLayout>
