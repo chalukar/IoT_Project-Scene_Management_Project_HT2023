@@ -37,114 +37,139 @@
 
                 <TextView
                     android:id="@+id/lbl_temp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Temperature:"
+                    android:text="Vacation Mode:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
                     android:typeface="monospace" />
 
-                <TextView
-                    android:id="@+id/txt_temp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dip"
-                    android:text="Nothing yet!"
-                    android:textColor="@color/my_primary"
-                    android:textSize="18sp"
-                    android:typeface="monospace" />
+                <ToggleButton
+                    android:id="@+id/btntoggle_vs"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="ToggleButton"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/my_primary"
+                    android:textColor="@color/white" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dip">
+                >
 
                 <TextView
-                    android:id="@+id/lbl_humidity"
-                    android:layout_width="150dp"
+                    android:id="@+id/lbl_calander"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Humidity:"
+                    android:text="Calander:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
                     android:typeface="monospace" />
 
-                <TextView
-                    android:id="@+id/txt_humidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:padding="5dip"
-                    android:text="Nothing yet!"
-                    android:textColor="@color/my_primary"
-                    android:textSize="18sp"
-                    android:typeface="monospace" />
             </LinearLayout>
-
+<!--From Date-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="5dip">
-
                 <TextView
-                    android:id="@+id/lbl_weather_status"
-                    android:layout_width="150dp"
+                    android:id="@+id/lbl_from_date"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Status:"
+                    android:text="From Date:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
                     android:typeface="monospace" />
-
-                <TextView
-                    android:id="@+id/txt_weather_status"
+                <Button
+                    android:id="@+id/vacation_fromdatePickerbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:text="JAN 01 2020"
+                    android:textSize="12dp"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:onClick="openFromDatePicker"
+                    android:textColor="@color/white"
+                    android:background="@color/my_primary"
+                    android:layout_weight="1" />
+            </LinearLayout>
+<!--            To Date-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip"
+                android:layout_marginBottom="25dp">
+                <TextView
+                    android:id="@+id/lbl_to_date"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Nothing yet!"
+                    android:text="To Date:"
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
                     android:typeface="monospace" />
-            </LinearLayout>
+                <Button
+                    android:id="@+id/vacation_todatePickerbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="JAN 01 2020"
+                    android:textSize="12dp"
 
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:onClick="openToDatePicker"
+                    android:textColor="@color/white"
+                    android:background="@color/my_primary"
+                    android:layout_weight="1"
+                    />
+
+
+
+            </LinearLayout>
             <Button
-                android:id="@+id/btn_time_of_day"
-                style="@android:style/Widget.DeviceDefault.Button.Borderless"
+                android:id="@+id/btn_add_vacation_mode"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="fill_parent"
-                android:layout_height="70dip"
+                android:layout_height="50dip"
                 android:layout_margin="10dp"
-                android:layout_marginTop="50dp"
-                android:background="@color/my_primary"
+                android:background="@color/black"
                 android:padding="10dip"
-                android:text=" Refresh "
+                android:text="Add Vacation"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
-
+                android:textSize="20sp" />
             <Button
                 android:id="@+id/btn_Home"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="fill_parent"
-                android:layout_height="70dip"
+                android:layout_height="50dip"
                 android:layout_margin="10dp"
-                android:background="@color/black"
+                android:background="@color/my_secondary"
                 android:padding="10dip"
                 android:text="Home"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <TextView
