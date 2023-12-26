@@ -8,9 +8,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
+        maven { url = uri("https://repo.eclipse.org/content/repositories/paho-snapshots/") }
     }
+
 }
 
 rootProject.name = "IoT Automate Scene Management Project HT2023"

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/gb_view"/>
-    <!--    Grid Layout-->
+    <!--Grid Layout-->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,7 +22,7 @@
         android:layout_below="@id/top_view"
         android:layout_marginTop="-70dp">
 
-        <!--        Card View 1 Time of Day-->
+        <!--Card View 1 Time of Day-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTimeOfDay"
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <!--        Card View 2 Occupancy-->
+        <!--Card View 2 Occupancy-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardOccupancy"
             android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <!--        Card View 3-->
+        <!--Card View 3-->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardWeather"
             android:layout_width="wrap_content"
