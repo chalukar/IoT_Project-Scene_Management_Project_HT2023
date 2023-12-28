@@ -10,7 +10,6 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
-        maven { url = uri("https://repo.eclipse.org/content/repositories/paho-snapshots/") }
     }
 
 }
