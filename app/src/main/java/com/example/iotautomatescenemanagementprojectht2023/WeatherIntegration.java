@@ -23,7 +23,7 @@ public class WeatherIntegration extends AppCompatActivity {
     private TextView humidity_value;
     private TextView weather_status;
     private static final String BROKER = "tcp://test.mosquitto.org:1883";
-    private static final String TOPIC = "iotproject/asmsensors";
+    private static final String TOPIC = "iotproject/asmweather";
     private static final String CLIENT_ID = MqttClient.generateClientId();
 
     @Override
@@ -71,13 +71,9 @@ public class WeatherIntegration extends AppCompatActivity {
                         @Override
                         public void run() {
                             // Update the UI (e.g., set text on a TextView)
-                            updateTextView(payload);
+                            updateWeatherTextView(payload);
                         }
                     });
-//                    String[] separated = payload.split(",");
-//                    txv_light.setText(separated[0]);
-//                    updateTextView(payload);
-//                    setTextvalue(payload);
                 }
 
                 @Override
@@ -93,10 +89,27 @@ public class WeatherIntegration extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    private void updateTextView(final String text) {
-        temp_value.setText(text.split(",")[0]);
-        humidity_value.setText(text.split(",")[1]);
 
+    private void updateWeatherTextView(final String text) {
+        String result = removeBrackets(text);
+        String a[] = result.split(",");
+        String temp = a[0];
+        String humidity = a[1];
+        temp_value.setText(temp);
+        humidity_value.setText(humidity);
+        weather_status.setText(a[2]);
+    }
+
+    // Method to remove brackets from an array
+    private static String removeBrackets(String input) {
+        // Check if the string has brackets
+        if (input.startsWith("(") && input.endsWith(")")) {
+            // Remove the first and last characters (brackets)
+            return input.substring(1, input.length() - 1);
+        } else {
+            // If the input doesn't have brackets, return as is
+            return input;
+        }
     }
 
 }

@@ -177,7 +177,7 @@
 
         <!--Card View 5 Settings-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardReports"
+            android:id="@+id/cardSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
@@ -216,7 +216,7 @@
 
         <!-- Card View 6 Reports-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardSettings"
+            android:id="@+id/cardReports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
