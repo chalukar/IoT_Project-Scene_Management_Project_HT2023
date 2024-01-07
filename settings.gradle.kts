@@ -8,9 +8,10 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
     }
+
 }
 
 rootProject.name = "IoT Automate Scene Management Project HT2023"

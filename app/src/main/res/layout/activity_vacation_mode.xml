@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VacationMode">
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/gb_view"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="209dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="30dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dip">
+
+                <TextView
+                    android:id="@+id/lbl_temp"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="Vacation Mode:"
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+                <ToggleButton
+                    android:id="@+id/btntoggle_vs"
+                    android:layout_width="match_parent"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/my_primary"
+                    android:text="ToggleButton"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbl_calander"
+                    android:layout_width="316dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="Select Date / Time:"
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+            <!--From Date-->
+            <LinearLayout
+                android:layout_width="371dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                android:padding="5dip">
+
+
+                <TextView
+                    android:id="@+id/lbl_from_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="From Date:"
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+                <Button
+                    android:id="@+id/vacation_fromdatePickerbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+
+                    android:layout_weight="1"
+                    android:background="@color/my_primary"
+                    android:onClick="openFromDatePicker"
+                    android:text="Select Date"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+<!--                <Button-->
+<!--                    android:id="@+id/vacation_fromtimePickerbtn"-->
+<!--                    android:layout_width="95dp"-->
+<!--                    android:layout_height="fill_parent"-->
+<!--                    android:layout_marginLeft="1dp"-->
+<!--                    android:layout_marginRight="1dp"-->
+
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/my_primary"-->
+<!--                    android:onClick="openFromTimePicker"-->
+<!--                    android:text="Select Time"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12dp" />-->
+            </LinearLayout>
+            <!--            To Date-->
+            <LinearLayout
+                android:layout_width="371dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal"
+                android:padding="5dip">
+
+                <TextView
+                    android:id="@+id/lbl_to_date"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="To Date:"
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+                <Button
+                    android:id="@+id/vacation_todatePickerbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+
+                    android:layout_weight="1"
+                    android:background="@color/my_primary"
+                    android:onClick="openToDatePicker"
+                    android:text="Select Date"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+
+<!--                <Button-->
+<!--                    android:id="@+id/vacation_totimePickerbtn"-->
+<!--                    android:layout_width="95dp"-->
+<!--                    android:layout_height="fill_parent"-->
+<!--                    android:layout_marginLeft="1dp"-->
+<!--                    android:layout_marginRight="1dp"-->
+
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/my_primary"-->
+<!--                    android:onClick="openToTimePicker"-->
+<!--                    android:text="Select Time"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12dp" />-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="371dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:orientation="horizontal"
+                android:padding="5dip">
+
+                <TextView
+                    android:id="@+id/tesult"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="Status:"
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+                <TextView
+                    android:id="@+id/txv_vacationStatus"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:padding="5dip"
+                    android:text="Loading.."
+                    android:textColor="@color/my_primary"
+                    android:textSize="18sp"
+                    android:typeface="monospace" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_add_vacation_mode"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_margin="10dp"
+                android:background="@color/black"
+                android:padding="10dip"
+                android:text="Add Vacation"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_Home"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="fill_parent"
+                android:layout_height="50dip"
+                android:layout_margin="10dp"
+                android:background="@color/my_secondary"
+                android:padding="10dip"
+                android:text="Home"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTopHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Automate Scene Management"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="29dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textdDshboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vaccation Monitoring"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="27dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_below="@id/textTopHeader"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

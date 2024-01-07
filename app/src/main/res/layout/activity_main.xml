@@ -10,8 +10,8 @@
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/gb_view"/>
-    <!--    Grid Layout-->
+        android:background="@drawable/gb_view" />
+    <!--Grid Layout-->
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,89 +21,17 @@
         android:layout_marginLeft="25dp"
         android:layout_below="@id/top_view"
         android:layout_marginTop="-70dp">
-        <!--        Card View 1-->
+
+        <!--Card View 1 Time of Day-->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardTimeOfDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:layout_margin="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_home"
-                    android:layout_gravity="center_horizontal">
-                </ImageView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:textColor="@color/my_primary">
-
-                </TextView>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-        <!--        Card View2-->
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="12dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:layout_margin="12dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_settings_bk"
-                    android:layout_gravity="center_horizontal">
-                </ImageView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Setting"
-                    android:layout_gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:textSize="18dp"
-                    android:textColor="@color/my_primary">
-
-                </TextView>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-        <!--        Card View 3-->
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="12dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_row="2"
+            android:layout_row="0"
             android:layout_column="0"
             android:layout_margin="12dp">
 
@@ -132,15 +60,16 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <!--        Card View 4-->
+        <!--Card View 2 Occupancy-->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardOccupancy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
-            android:layout_row="2"
+            android:layout_row="0"
             android:layout_column="1"
             android:layout_margin="12dp">
 
@@ -169,8 +98,86 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <!--        Card View 5-->
+        <!--Card View 3-->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="12dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_weather_bk"
+                    android:layout_gravity="center_horizontal">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weather"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/my_primary">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+        <!--Card View 4 - Vacation-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardVacation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="12dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_vacation_mode"
+                    android:layout_gravity="center_horizontal">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vacation"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:textColor="@color/my_primary">
+
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!--Card View 5 Settings-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
@@ -189,13 +196,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ic_home"
+                    android:src="@drawable/ic_settings_bk"
                     android:layout_gravity="center_horizontal">
                 </ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="Setting"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:textSize="18dp"
@@ -206,8 +213,10 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-        <!--        Card View 6-->
+
+        <!-- Card View 6 Reports-->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardReports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
@@ -226,13 +235,13 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/ic_home"
+                    android:src="@drawable/ic_report"
                     android:layout_gravity="center_horizontal">
                 </ImageView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="Reports"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:textSize="18dp"
