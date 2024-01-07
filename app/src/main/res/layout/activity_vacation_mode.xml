@@ -113,19 +113,19 @@
                     android:textColor="@color/white"
                     android:textSize="12dp" />
 
-                <Button
-                    android:id="@+id/vacation_fromtimePickerbtn"
-                    android:layout_width="95dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="1dp"
+<!--                <Button-->
+<!--                    android:id="@+id/vacation_fromtimePickerbtn"-->
+<!--                    android:layout_width="95dp"-->
+<!--                    android:layout_height="fill_parent"-->
+<!--                    android:layout_marginLeft="1dp"-->
+<!--                    android:layout_marginRight="1dp"-->
 
-                    android:layout_weight="1"
-                    android:background="@color/my_primary"
-                    android:onClick="openFromTimePicker"
-                    android:text="Select Time"
-                    android:textColor="@color/white"
-                    android:textSize="12dp" />
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/my_primary"-->
+<!--                    android:onClick="openFromTimePicker"-->
+<!--                    android:text="Select Time"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12dp" />-->
             </LinearLayout>
             <!--            To Date-->
             <LinearLayout
@@ -162,19 +162,19 @@
                     android:textSize="12dp" />
 
 
-                <Button
-                    android:id="@+id/vacation_totimePickerbtn"
-                    android:layout_width="95dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="1dp"
+<!--                <Button-->
+<!--                    android:id="@+id/vacation_totimePickerbtn"-->
+<!--                    android:layout_width="95dp"-->
+<!--                    android:layout_height="fill_parent"-->
+<!--                    android:layout_marginLeft="1dp"-->
+<!--                    android:layout_marginRight="1dp"-->
 
-                    android:layout_weight="1"
-                    android:background="@color/my_primary"
-                    android:onClick="openToTimePicker"
-                    android:text="Select Time"
-                    android:textColor="@color/white"
-                    android:textSize="12dp" />
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@color/my_primary"-->
+<!--                    android:onClick="openToTimePicker"-->
+<!--                    android:text="Select Time"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12dp" />-->
 
 
             </LinearLayout>
@@ -205,7 +205,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="15dp"
                     android:padding="5dip"
-                    android:text="Status:"
+                    android:text="Loading.."
                     android:textColor="@color/my_primary"
                     android:textSize="18sp"
                     android:typeface="monospace" />

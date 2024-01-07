@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-//import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +21,8 @@ public class WeatherIntegration extends AppCompatActivity {
     private TextView temp_value;
     private TextView humidity_value;
     private TextView weather_status;
+    private TextView location;
+    private TextView weatherdes;
     private static final String BROKER = "tcp://test.mosquitto.org:1883";
     private static final String TOPIC = "iotproject/asmweather";
     private static final String CLIENT_ID = MqttClient.generateClientId();
@@ -35,6 +36,9 @@ public class WeatherIntegration extends AppCompatActivity {
         temp_value = (TextView) findViewById(R.id.txv_tempval);
         humidity_value = (TextView) findViewById(R.id.txv_humidityVal);
         weather_status = (TextView) findViewById(R.id.txv_weather_status);
+        location = (TextView) findViewById(R.id.txv_city);
+        weatherdes = (TextView) findViewById(R.id.txv_description);
+
         // MQTT connection setup
         connectToMQTTBroker();
 
@@ -65,13 +69,13 @@ public class WeatherIntegration extends AppCompatActivity {
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     // Update the TextView with the received message
-                    String payload = new String(message.getPayload());
-                    System.out.println("Incoming message: " + payload);
+                    String NewMessage = new String(message.getPayload());
+                    System.out.println("Incoming message: " + NewMessage);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             // Update the UI (e.g., set text on a TextView)
-                            updateWeatherTextView(payload);
+                            updateWeatherTextView(NewMessage);
                         }
                     });
                 }
@@ -90,25 +94,27 @@ public class WeatherIntegration extends AppCompatActivity {
         }
     }
 
-    private void updateWeatherTextView(final String text) {
-        String result = removeBrackets(text);
-        String a[] = result.split(",");
-        String temp = a[0];
-        String humidity = a[1];
-        temp_value.setText(temp);
-        humidity_value.setText(humidity);
-        weather_status.setText(a[2]);
+    private void updateWeatherTextView(final String NewMessage) {
+        String result = removeBrackets(NewMessage);
+        String splitedVal[] = result.split(",");
+        String temp = splitedVal[0];
+        String humidity = splitedVal[1];
+        temp_value.setText(temp +" °C");
+        humidity_value.setText(humidity + " %");
+        weather_status.setText(splitedVal[2].replace("'", ""));
+        location.setText(splitedVal[3].replace("'", ""));
+        weatherdes.setText(splitedVal[4].replace("'", ""));
     }
 
     // Method to remove brackets from an array
-    private static String removeBrackets(String input) {
+    private static String removeBrackets(String result) {
         // Check if the string has brackets
-        if (input.startsWith("(") && input.endsWith(")")) {
+        if (result.startsWith("(") && result.endsWith(")")) {
             // Remove the first and last characters (brackets)
-            return input.substring(1, input.length() - 1);
+            return result.substring(1, result.length() - 1);
         } else {
             // If the input doesn't have brackets, return as is
-            return input;
+            return result;
         }
     }
 

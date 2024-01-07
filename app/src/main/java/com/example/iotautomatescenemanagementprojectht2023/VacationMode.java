@@ -19,10 +19,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -44,7 +41,7 @@ public class VacationMode extends AppCompatActivity {
     private String tempToDateString = "";
     private String tempFromTimeString = "";
     private String tempToTimeString = "";
-    private TextView returnresult;
+    private TextView vacation_sratus;
     int hour, minute;
     private static final String TOPIC_SUB = "iotproject/asmvacationmode_subscribe"; //subscribe
     private static final String TOPIC_PUB = "iotproject/asmvacationmode_publish"; // publisher
@@ -57,13 +54,11 @@ public class VacationMode extends AppCompatActivity {
 
         fromdateBtn = findViewById(R.id.vacation_fromdatePickerbtn);
         todateBtn = findViewById(R.id.vacation_todatePickerbtn);
-        fromtimeBtn = findViewById(R.id.vacation_fromtimePickerbtn);
-        totimeBtn = findViewById(R.id.vacation_totimePickerbtn);
         homeBtn = findViewById(R.id.btn_Home);
         addVacation = findViewById(R.id.btn_add_vacation_mode);
         colorToggleButton = findViewById(R.id.btntoggle_vs);
         toggleButton = findViewById(R.id.btntoggle_vs);
-        returnresult = findViewById(R.id.txv_vacationStatus);
+        vacation_sratus = findViewById(R.id.txv_vacationStatus);
 
         fromDatePicker();
         toDatePicker();
@@ -111,10 +106,7 @@ public class VacationMode extends AppCompatActivity {
                 try {
                     String tempFromDate =tempFromDateString;
                     String tempToDate =tempToDateString;
-                    String tempFromTime =tempFromTimeString;
-                    String tempToTime =tempToTimeString;
-
-                    sendToPython(tempFromDate,tempToDate,tempFromTime,tempToTime);
+                    sendToPython(tempFromDate,tempToDate);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -134,19 +126,26 @@ public class VacationMode extends AppCompatActivity {
             mqttClient.setCallback(new MqttCallback() {
                 @Override
                 public void connectionLost(Throwable cause) {
-                    // Handle connection lost
+                    System.out.println("Connection to MQTT broker lost. Trying to reconnect...");
+                    try {
+                        //reconnect
+                        mqttClient.reconnect();
+                        System.out.println("Reconnected to MQTT broker.");
+                    } catch (MqttException e) {
+                        System.out.println("Failed to reconnect to MQTT broker: " + e.getMessage());
+                    }
                 }
 
                 @Override
                 public void messageArrived(String topic, MqttMessage message) throws Exception {
                     // Update the TextView with the received message
-                    String payload = new String(message.getPayload());
-                    System.out.println("Incoming message: " + payload);
+                    String arrivedMessage = new String(message.getPayload());
+                    System.out.println("Incoming message: " + arrivedMessage);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             // Update the UI (e.g., set text on a TextView)
-                            updateVacationTextView(payload);
+                            updateVacationTextView(arrivedMessage);
                         }
                     });
                 }
@@ -154,6 +153,7 @@ public class VacationMode extends AppCompatActivity {
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
                     // Delivery complete
+                    System.out.println("Delivery complete...");
                 }
             });
 
@@ -165,7 +165,7 @@ public class VacationMode extends AppCompatActivity {
         }
     }
 
-    private void sendToPython(String tempFromDate,String tempToDate,String tempFromTime,String tempToTime) {
+    private void sendToPython(String tempFromDate,String tempToDate) {
         try {
             MqttClient mqttClient = new MqttClient(BROKER, CLIENT_ID, new MemoryPersistence());
             MqttConnectOptions options = new MqttConnectOptions();
@@ -174,19 +174,18 @@ public class VacationMode extends AppCompatActivity {
             mqttClient.connect(options);
 
             // Publish the data to the topic
-            String [] tempval = {tempFromDate,tempToDate,tempFromTime,tempToTime};
+            String [] tempval = {tempFromDate,tempToDate};
             String message = String.join(",", tempval);
             mqttClient.publish(TOPIC_SUB, message.getBytes(), 0, false);
 
-            // Disconnect after sending the data
-//            mqttClient.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void updateVacationTextView(String payload) {
-        returnresult.setText(payload);
+    private void updateVacationTextView(String arrivedMessage) {
+        String repl_light_status = arrivedMessage.replace("'", "");
+        vacation_sratus.setText(repl_light_status);
     }
 
     private String getTodayDate() {
@@ -239,51 +238,51 @@ public class VacationMode extends AppCompatActivity {
         todatePickerDialog = new DatePickerDialog(this,style,dateSetListener,year,month,day);
     }
 
-    public void openFromTimePicker(View view)
-    {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
-        {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
-            {
-                hour = selectedHour;
-                minute = selectedMinute;
-                fromtimeBtn.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
-                String btnFromTimeText = fromtimeBtn.getText().toString();
-                tempFromTimeString = btnFromTimeText;
-            }
-        };
-
-        // int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true);
-
-        timePickerDialog.setTitle("Select Time");
-        timePickerDialog.show();
-    }
-
-    public void openToTimePicker(View view)
-    {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
-        {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
-            {
-                hour = selectedHour;
-                minute = selectedMinute;
-                totimeBtn.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
-                String btnToTimeText = totimeBtn.getText().toString();
-                tempToTimeString = btnToTimeText;
-            }
-        };
-
-        // int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
-
-        timePickerDialog.setTitle("Select Time");
-        timePickerDialog.show();
-    }
+//    public void openFromTimePicker(View view)
+//    {
+//        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+//        {
+//            @Override
+//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+//            {
+//                hour = selectedHour;
+//                minute = selectedMinute;
+//                fromtimeBtn.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+//                String btnFromTimeText = fromtimeBtn.getText().toString();
+//                tempFromTimeString = btnFromTimeText;
+//            }
+//        };
+//
+//        // int style = AlertDialog.THEME_HOLO_DARK;
+//
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true);
+//
+//        timePickerDialog.setTitle("Select Time");
+//        timePickerDialog.show();
+//    }
+//
+//    public void openToTimePicker(View view)
+//    {
+//        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener()
+//        {
+//            @Override
+//            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute)
+//            {
+//                hour = selectedHour;
+//                minute = selectedMinute;
+//                totimeBtn.setText(String.format(Locale.getDefault(), "%02d:%02d",hour, minute));
+//                String btnToTimeText = totimeBtn.getText().toString();
+//                tempToTimeString = btnToTimeText;
+//            }
+//        };
+//
+//        // int style = AlertDialog.THEME_HOLO_DARK;
+//
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+//
+//        timePickerDialog.setTitle("Select Time");
+//        timePickerDialog.show();
+//    }
 
     private String makeDateString(int dayOfMonth, int month, int year) {
         return getMonthFormat(month)+"-"+ dayOfMonth +"-"+ year;

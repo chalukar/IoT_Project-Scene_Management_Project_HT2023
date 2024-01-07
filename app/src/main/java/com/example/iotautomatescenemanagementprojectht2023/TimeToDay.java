@@ -29,12 +29,12 @@ public class TimeToDay extends AppCompatActivity {
     private TextView txt_current_date;
     private TextView txt_mode;
     private TextView txt_status;
-    private TextView txv_proximity;
+    private TextView txt_out_status;
     private Handler handler = new Handler();
     private Runnable updateTimeRunnable;
 
     private static final String BROKER = "tcp://test.mosquitto.org:1883";
-    private static final String TOPIC = "iotproject/asmlight";
+    private static final String TOPIC_PUB = "iotproject/asmnaturallightlux";
     private static final String CLIENT_ID = MqttClient.generateClientId();
     private static final String TAG = "TimeToDay";
 
@@ -44,9 +44,10 @@ public class TimeToDay extends AppCompatActivity {
         setContentView(R.layout.activity_time_to_day);
 
         btn_Home = findViewById(R.id.btn_Home);
-        txt_current_date = findViewById(R.id.txt_current_date);
-        txt_mode = findViewById(R.id.txt_mode);
-        txt_status = findViewById(R.id.txt_status);
+        txt_current_date = findViewById(R.id.txv_current_date);
+        txt_mode = findViewById(R.id.txv_mode);
+        txt_status = findViewById(R.id.txv_status);
+        txt_out_status = findViewById(R.id.txv_out_status);
 
 
         updateTimeRunnable = new Runnable() {
@@ -95,19 +96,18 @@ public class TimeToDay extends AppCompatActivity {
                 }
 
                 @Override
-                public void messageArrived(String topic, MqttMessage message) throws Exception {
+                public void messageArrived(String pub_topic, MqttMessage message) throws Exception {
                     // Update the TextView with the received message
-                    String payload = new String(message.getPayload());
-                    System.out.println("Incoming message: " + payload);
+                    String newMessage = new String(message.getPayload());
+                    System.out.println("Incoming message: " + newMessage);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             // Update the UI (e.g., set text on a TextView)
-                            updateTextView(payload);
+                            updateTimeOfDayTextView(newMessage);
                         }
                     });
                 }
-
                 @Override
                 public void deliveryComplete(IMqttDeliveryToken token) {
                     // Delivery complete
@@ -115,16 +115,35 @@ public class TimeToDay extends AppCompatActivity {
             });
 
             // Subscribe to the topic
-            mqttClient.subscribe(TOPIC, 0);
+            mqttClient.subscribe(TOPIC_PUB, 0);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void updateTextView(final String text) {
-        txt_mode.setText(text.split("-")[0]);
-        txt_status.setText(text.split("-")[1]);
+    private void updateTimeOfDayTextView(final String newMessage) {
+        String result = removeBrackets(newMessage);
+        String sep_val[] = result.split(",");
+        String light_status = sep_val[0];
+        String timeofday_status = sep_val[1];
+        String outsite_natural_status = sep_val[2];
+        String repl_light_status = light_status.replace("'", "");
+        String repl_timeofday_status = timeofday_status.replace("'", "");
+        String repl_outsite_natural_status = outsite_natural_status.replace("'", "");
+        txt_mode.setText(repl_light_status);
+        txt_status.setText(repl_timeofday_status);
+        txt_out_status.setText(repl_outsite_natural_status);
 
+    }
+    private static String removeBrackets(String input) {
+        // Check if the string has brackets
+        if (input.startsWith("[") && input.endsWith("]")) {
+            // Remove the first and last characters (brackets)
+            return input.substring(1, input.length() - 1);
+        } else {
+            // If the input doesn't have brackets, return as is
+            return input;
+        }
     }
 
 }

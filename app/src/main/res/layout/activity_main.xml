@@ -10,7 +10,7 @@
         android:id="@+id/top_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/gb_view"/>
+        android:background="@drawable/gb_view" />
     <!--Grid Layout-->
     <GridLayout
         android:layout_width="match_parent"
